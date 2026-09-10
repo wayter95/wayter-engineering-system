@@ -1,0 +1,12 @@
+---
+description: WAYTER Engineering System — regras do projeto para agentes
+alwaysApply: true
+---
+
+Gerado por `wayter sync`. Não edite; edite `.agents/project.md`.
+
+Leia e siga `AGENTS.md` na raiz do repositório. Ele aponta para `.agents/constitution.md`, `.agents/workflow.md`, padrões, segurança, testes e a Definition of Done.
+
+Sem subagentes neste ambiente: assuma os papéis de `.agents/roles/` em sequência (anuncie "Como Reviewer: ..."). Antes de declarar concluído, rode `bash .agents/bin/validate.sh` e inclua a saída.
+
+Nunca execute push, deploy, migration em produção, reset/checkout destrutivo ou remoção de dados sem pedido explícito do usuário.
