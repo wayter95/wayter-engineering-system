@@ -10,3 +10,5 @@ Leia e siga `AGENTS.md` na raiz do repositório. Ele aponta para `.agents/consti
 Sem subagentes neste ambiente: assuma os papéis de `.agents/roles/` em sequência (anuncie "Como Reviewer: ..."). Antes de declarar concluído, rode `bash .agents/bin/validate.sh` e inclua a saída.
 
 Nunca execute push, deploy, migration em produção, reset/checkout destrutivo ou remoção de dados sem pedido explícito do usuário.
+
+Um comando de shell por vez; nunca em paralelo, nunca com `&`. Teste só o arquivo tocado durante o desenvolvimento; a suíte completa uma vez, via `validate.sh`. Nenhum comentário no código. Commits só pela CLI do git, sem atribuição de IA.

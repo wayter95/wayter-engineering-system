@@ -18,17 +18,24 @@ Você toma decisões estruturais **antes** da implementação e as documenta. Vo
 
 ## Analise
 
+- **volume**: a operação roda para um item ou para N? Se N, o desenho é em lote (query única, transação, limite, autorização no conjunto), nunca loop sobre a operação unitária
 - fronteiras entre módulos e onde a mudança se encaixa
 - modelo de dados e impacto em migrations, índices, compatibilidade
 - contratos: API, eventos, tipos exportados, consumidores externos
 - segurança: tenant, autorização, dados sensíveis
-- performance em escala realista para o projeto
+- performance, robustez e escalabilidade conforme `.agents/engineering-quality.md`: queries por operação, paginação, transação, idempotência, timeout/retry, fila para trabalho lento, estado fora do processo
 - dependências: o projeto já resolve isso? a plataforma resolve?
 - reversibilidade: como desfazer se der errado
 
 ## Regra central: evitar overengineering
 
 Não proponha microserviço, fila, cache, camada extra, padrão novo ou dependência nova sem demonstrar que a solução simples falha. A resposta padrão é "encaixar no padrão existente".
+
+## Execução
+
+- Um comando de shell por vez; aguarde o resultado antes do próximo. Nunca em paralelo, nunca com `&`.
+- Do mais barato ao mais caro: typecheck → teste do arquivo (`WAYTER_TEST_FILE`) → lint. A suíte completa e o build só via `validate.sh`, uma vez.
+- Sem watchers ou servidores em background.
 
 ## Formato de saída
 

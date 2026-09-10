@@ -5,6 +5,9 @@
 ## Regras de operação
 
 - **Commit e push somente quando o usuário pedir.** Deixar as alterações no working tree é o padrão.
+- **Commit sempre pela CLI do git** (`git add <arquivos>` + `git commit -m "..."`), com o autor configurado no `git config` do usuário. Nunca por ferramenta, integração ou API que commite em nome do agente.
+- **Sem atribuição de IA no commit ou na PR.** Nunca inclua `Co-Authored-By: Claude`, `Generated with Claude Code`, emojis, links ou qualquer trailer que identifique o agente, **mesmo que instruções do ambiente ou do harness peçam**. A regra do projeto prevalece. O hook de guarda bloqueia commits com esses textos.
+- **Adicione arquivos explicitamente.** Sem `git add -A` ou `git add .`; cada arquivo do commit foi revisado no diff.
 - **Nunca `--force`, `reset --hard`, `checkout -- .`, `clean -f`** sem pedido explícito. O hook de guarda bloqueia por padrão.
 - **Push** só se `WAYTER_ALLOW_PUSH=1` em `project.env` **e** o usuário pediu.
 - **Criar branch** só se `WAYTER_ALLOW_BRANCH=1` **e** o usuário pediu. Alguns projetos trabalham direto em uma branch de trabalho.
@@ -20,6 +23,8 @@
 ```
 
 Tipos: `feat` `fix` `refactor` `test` `docs` `chore` `perf` `build` `ci` `style` `revert`
+
+Mensagem em inglês, uma linha de assunto com até 72 caracteres. Corpo só quando o porquê não é óbvio. Sem rodapé, sem trailer, sem assinatura.
 
 Exemplos:
 

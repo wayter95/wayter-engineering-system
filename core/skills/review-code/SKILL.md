@@ -15,8 +15,10 @@ Assuma o papel `reviewer` (`.agents/roles/reviewer.md`) ou delegue a ele.
 4. **Checar regras do projeto**: `.agents/project.md` (regras que causam bug), `.agents/security.md`, `.agents/coding-standards.md`.
 5. **Checar testes:** cobrem o novo comportamento? cobrem regressão? foram alterados para passar?
 6. **Checar escopo:** há mudanças não relacionadas?
-7. **Rodar** o que for barato e revelador: typecheck, testes da área.
-8. **Reportar** no formato do papel `reviewer`, com veredito.
+7. **Checar higiene:** nenhum comentário adicionado ao código; mensagens de commit sem atribuição de IA e no padrão de `.agents/git.md`.
+8. **Rodar** o que for barato e revelador, **um comando por vez**: `bash .agents/bin/validate.sh --only typecheck`, depois os testes dos arquivos tocados (`WAYTER_TEST_FILE`) ou `--fast`. Nunca a suíte completa e o build em paralelo.
+9. **Em revisão de merge ou PR grande:** revise por commit ou por módulo, não o diff inteiro de uma vez. Confirme que a resolução de conflitos preservou os dois lados (`git log --merges`, `git diff <base>...HEAD -- <arquivo>` para arquivos que estavam em conflito).
+10. **Reportar** no formato do papel `reviewer`, com veredito.
 
 ## Regras
 

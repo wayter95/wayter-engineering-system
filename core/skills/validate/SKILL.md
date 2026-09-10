@@ -12,6 +12,8 @@ description: Executa a Definition of Done do projeto rodando .agents/bin/validat
    bash .agents/bin/validate.sh
    ```
    Para um subconjunto: `bash .agents/bin/validate.sh --only lint,typecheck`.
+   Durante o desenvolvimento: `bash .agents/bin/validate.sh --fast` (typecheck + testes relacionados aos arquivos alterados + comments).
+   O script roda um passo por vez, com `nice`, limite de workers e de memória; não chame as ferramentas diretamente em paralelo.
 2. Leia o resumo final. Para cada passo com falha, abra o log indicado (`.agents/.validate/<passo>.log`).
 3. Classifique cada falha:
    - **causada pela mudança atual** → corrija e rode de novo

@@ -32,7 +32,7 @@ REQUEST
   ↓
 ANALYZE     entender, localizar código, ler docs da área, classificar S/M/L
   ↓
-PLAN        3-10 linhas; para L, aguardar aprovação
+PLAN        3-10 linhas + bloco Dimensionamento (engineering-quality.md); para L, aguardar aprovação
   ↓
 IMPLEMENT   menor mudança correta; incrementos que compilam
   ↓
@@ -74,7 +74,19 @@ Não carregue toda a documentação. Leia por camadas:
 3. O código da área e uma implementação semelhante
 4. Só então o restante, se necessário
 
-## 5. Quando parar e perguntar
+## 5. Execução de comandos e recursos da máquina
+
+A máquina de desenvolvimento tem memória limitada. Vários processos pesados ao mesmo tempo (typecheck + testes + build, ou dois subagentes rodando suítes) derrubam o sistema.
+
+- **Um comando por vez.** Nunca dispare duas chamadas de shell em paralelo, nem encadeie comandos pesados com `&`, `&&` ou em subshells simultâneos. Espere o resultado antes do próximo.
+- **Um subagente por vez.** Delegue, aguarde o retorno, integre, e só então delegue o próximo. Sem fan-out paralelo de agentes.
+- **Do mais barato ao mais caro.** `git diff --check` → typecheck → teste do arquivo tocado → lint → suíte da área → suíte completa → build. Pare no primeiro erro.
+- **Durante o desenvolvimento, teste só o que mudou.** Use `WAYTER_TEST_FILE` para um arquivo ou `bash .agents/bin/validate.sh --fast`. A suíte completa roda uma vez, no `validate` final.
+- **Sem watchers, servidores ou processos em background** iniciados pelo agente, salvo pedido explícito. Se precisar de servidor para um teste e2e, suba, teste, derrube, nesta ordem.
+- **Build local só se `WAYTER_BUILD_ENABLED=1`.** Em projetos Next.js e monorepos grandes o build fica para o CI.
+- O `validate.sh` já roda cada passo em sequência, com prioridade baixa (`nice`), limite de workers e de memória de Node. Não contorne isso chamando as ferramentas diretamente com paralelismo.
+
+## 6. Quando parar e perguntar
 
 - O pedido admite duas leituras que geram trabalho materialmente diferente.
 - O plano exige ação destrutiva ou externa.

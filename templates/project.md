@@ -6,7 +6,6 @@
 
 ## Visão geral
 
-<!-- Uma ou duas frases: o que o sistema faz e para quem. -->
 {{DESCRIPTION}}
 
 ## Stack
@@ -27,11 +26,11 @@ Os comandos canônicos estão em `.agents/project.env` e rodam via `bash .agents
 |---|---|
 | Subir em dev | `{{DEV_CMD}}` |
 | Testar um arquivo | `{{TEST_FILE}}` |
+| Testar só o que mudou | `bash .agents/bin/validate.sh --fast` |
 | Migrations | (a confirmar) |
 
 ## Arquitetura
 
-<!-- Entradas (rotas, handlers, crons, workers), camadas, onde vive a regra de negócio, DI, padrão de erro. -->
 - Entradas: (a confirmar)
 - Camadas: (a confirmar)
 - Regra de negócio vive em: (a confirmar)
@@ -46,7 +45,6 @@ Os comandos canônicos estão em `.agents/project.env` e rodam via `bash .agents
 
 ## Convenções observadas
 
-<!-- O que o código FAZ, não o que gostaríamos. Um exemplo de arquivo por convenção. -->
 - Nomes: (a confirmar) — ex.: `src/...`
 - Pastas: (a confirmar)
 - Testes: (a confirmar) — ex.: `...spec.ts` ao lado do arquivo
@@ -54,17 +52,14 @@ Os comandos canônicos estão em `.agents/project.env` e rodam via `bash .agents
 
 ## Regras que historicamente causam bug
 
-<!-- Uma linha por regra, com o porquê. Fontes: commits fix:, comentários NEVER/NUNCA, testes de regressão, ADRs. -->
 - (a confirmar)
 
 ## Zonas de perigo
 
-<!-- Migrations, multi-tenant, pagamentos, integrações, scripts que tocam produção. Restrições explícitas. -->
 - (a confirmar)
 
 ## Documentação por área
 
-<!-- Antes de mexer em X, leia Y. Se não há doc, aponte o arquivo de referência. -->
 | Área | Ler antes |
 |---|---|
 | | |
@@ -76,6 +71,6 @@ ADRs em `docs/decisions/`. Regras operacionais derivadas de ADRs:
 
 ## Permissões e limites deste projeto
 
-- Push: `WAYTER_ALLOW_PUSH` em `project.env`
-- Branches: `WAYTER_ALLOW_BRANCH` em `project.env`
+Variáveis de `.agents/project.env` (referência completa no README do WAYTER):
+- Push: `WAYTER_ALLOW_PUSH` · Branches: `WAYTER_ALLOW_BRANCH` · Comentários no código: `WAYTER_CHECK_COMMENTS` (1 = falha no validate)
 - Nunca: (a confirmar — ex.: `db push`, build local, tocar em produção)

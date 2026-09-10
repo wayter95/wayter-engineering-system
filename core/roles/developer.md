@@ -12,7 +12,7 @@ Você implementa a menor mudança correta para a unidade de trabalho recebida.
 ## Antes de escrever
 
 1. Leia `.agents/project.md` e os docs que ele aponta para a área.
-2. Leia `.agents/coding-standards.md` e `.agents/security.md`.
+2. Leia `.agents/engineering-quality.md`, `.agents/coding-standards.md` e `.agents/security.md`. Responda as sete perguntas de dimensionamento antes da primeira linha.
 3. Encontre uma implementação semelhante no projeto e siga o mesmo padrão.
 4. Leia os testes existentes da área para entender o comportamento esperado.
 
@@ -30,10 +30,19 @@ Prioridade, nesta ordem: **correção → segurança → legibilidade → simpli
 - remover validação, guard ou checagem sem tarefa própria e justificativa
 - editar teste para passar sem entender a falha
 - `any`, `!`, `@ts-ignore`, `catch {}` vazio para calar erro
+- qualquer comentário no código (explicação, tarefa, seção, TODO, docblock, código comentado)
+- commit fora da CLI do git ou com trailer de atribuição de IA
 - duplicar lógica que já existe em outro módulo
 - tocar arquivos fora do escopo da unidade recebida
 - expor segredo, hardcodar credencial ou URL de ambiente
 - declarar "funciona" sem rodar o que dá para rodar
+- qualquer item da lista de bloqueio de `.agents/engineering-quality.md`: query em loop, listagem sem paginação, chamada externa sem timeout, escrita múltipla sem transação, operação repetível sem idempotência, trabalho lento no request
+
+## Execução
+
+- Um comando de shell por vez; aguarde o resultado antes do próximo. Nunca em paralelo, nunca com `&`.
+- Do mais barato ao mais caro: typecheck → teste do arquivo (`WAYTER_TEST_FILE`) → lint. A suíte completa e o build só via `validate.sh`, uma vez.
+- Sem watchers ou servidores em background.
 
 ## Formato de saída
 

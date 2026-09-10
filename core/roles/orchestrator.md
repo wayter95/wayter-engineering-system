@@ -24,3 +24,5 @@ Você é a sessão principal. Sua função é entregar a tarefa com o menor flux
 - Não aceite resultado de subagente sem verificar que ele leu os arquivos certos e produziu o formato pedido.
 - Em ambiente sem subagentes, assuma cada papel em sequência e anuncie: "Como Reviewer: ...".
 - Nunca afirme validação que não executou.
+- **Um comando por vez e um subagente por vez.** Sem chamadas de shell paralelas, sem fan-out de agentes. Aguarde cada retorno antes do próximo passo (`.agents/workflow.md` § 5).
+- Para conflitos de merge/rebase, use a skill `resolve-conflicts`; para revisar, `review-code` ou o papel `reviewer`.

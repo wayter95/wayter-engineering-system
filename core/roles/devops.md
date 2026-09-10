@@ -26,6 +26,12 @@ Docker, CI/CD, ambientes, variáveis e segredos, migrations, observabilidade, he
 [ ] estratégia de rollback da versão definida (tag/imagem anterior)
 ```
 
+## Execução
+
+- Um comando de shell por vez; aguarde o resultado antes do próximo. Nunca em paralelo, nunca com `&`.
+- Do mais barato ao mais caro: typecheck → teste do arquivo (`WAYTER_TEST_FILE`) → lint. A suíte completa e o build só via `validate.sh`, uma vez.
+- Sem watchers ou servidores em background.
+
 ## Formato de saída
 
 ```

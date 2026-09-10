@@ -21,6 +21,7 @@
 
 **Query ou mutação em banco**
 - [ ] escopo de tenant presente e vindo do contexto autenticado
+- [ ] operação em lote verifica posse de todos os ids no conjunto (uma query), com limite de tamanho e transação
 - [ ] sem interpolação de string em SQL; parâmetros sempre
 - [ ] paginação em listagens
 
